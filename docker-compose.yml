@@ -1,0 +1,20 @@
+services:
+
+  db:
+    container_name: postgres_db
+    image: postgres:16-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=picpay
+      - POSTGRES_USER=picpay
+      - POSTGRES_DB=picpaydb
+    volumes:
+      - './.docker/db/data:/var/lib/postgresql/data'
+    networks:
+      - db-net
+
+networks:
+  db-net:
+    driver: bridge
